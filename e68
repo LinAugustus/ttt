@@ -1,0 +1,17 @@
+//e68
+
+#include <iostream>
+
+bool equals(const int a[], int a_size,const int b[], int b_size)
+{
+    if(a_size != b_size)// if these two arrays' size are not the same, return false;
+    {
+        return false;
+    }
+    for( int i=0;i<a_size;i++)//a loop throughout the entire array
+    {
+        if(a[i]!=b[i])
+        return false; //one of value are not the same value in the same order, false
+    }
+    return true;
+}

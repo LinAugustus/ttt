@@ -97,7 +97,7 @@ int TicTacToeBoard::size() const {
 //Note that before we can use board[row][col],
 //need to make sure that row and col indices are valid.
 void TicTacToeBoard::mark(int row, int col, char symbol) {
-    if(TicTacToeBoard::isAvailable(row,col))
+    if(TicTacToeBoard::isAvailable(row,col)||symbol==' ')
     {
         board[row][col]=symbol;
     }
@@ -154,6 +154,14 @@ std::string TicTacToeBoard::to_string() const {
 //is missing an 'X' or an 'O', a win is still possible (return false for tie status).
 bool TicTacToeBoard::tie() const {
     //check row;
+    for(int i=0;i<board.size();i++)
+    {
+        for(int j=0;j<board.size();j++)
+        {
+            if(board[i][j]==' ')
+            return false;
+        }
+    }
     for(int i=0;i<board.size();i++)
     {
         bool x=false;

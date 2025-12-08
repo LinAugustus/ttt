@@ -55,26 +55,28 @@ TicTacToeGame::TicTacToeGame()
   bool TicTacToeGame::isGameOver() const
   {
   
-    if(tttBoard.tie())
+    if(tttBoard.win(currRow, currCol)) {
+    if(tttBoard.getValue(currRow, currCol) == HUMAN_ID)
     {
-      cout<<"It is a tie."<<endl;
-      return true;
-        
+      cout<<tttBoard.to_string()<<endl;
+    
+        cout << "Human wins. Yay!!!" << endl;
+    }
+    else
+    {
+      cout<<tttBoard.to_string()<<endl;
+    
+        cout << "Computer wins. Yuck." << endl;
+    }
+    return true;
+}
 
-    }
-    if(tttBoard.getValue(currRow,currCol)=='X'||tttBoard.win(currRow,currCol))
-    {
-      cout<<"Human wins. Yay!!!."<<endl;
-      return true;
-    }
-    if(tttBoard.getValue(currRow,currCol)=='O'||tttBoard.win(currRow,currCol))
-    {
-      cout<<"Computer wins. Yuck."<<endl;
-      return true;
-        
+if(tttBoard.tie()) {
+    cout << "It is a tie." << endl;
+    return true;
+}
 
-    }
-    return false;
+return false;
 
   }
 
@@ -97,49 +99,49 @@ TicTacToeGame::TicTacToeGame()
   //row and col are valid ,
   //mark the corresponding cell in the board by HUMAN_ID.
   void TicTacToeGame::humanPlay()
-  {
-    int r;
-    int c;
-    do{
-    
-    cout<<"Enter row"<<endl;
-    while (true) {
-   
-    if (cin >> r) {
-        if (r >= 0 && r < tttBoard.size()) {
-            break; 
-        } else {
-            cout << "invalid, re enter,number in range" << endl;
-        }
-    } else {
-        cout << "invalid, re enter int" << endl;
-        cin.clear();             
-        cin.ignore(1000, '\n');  
-    }
-}
-   
-    cout<<"Enter col"<<endl;
-    while (true) {
-   
-    if (cin >> c) {
-        if (c >= 0 && c < tttBoard.size()) {
-            break; 
-        } else {
-            cout << "invalid, re enter,number in range" << endl;
-        }
-    } else {
-        cout << "invalid, re enter int" << endl;
-        cin.clear();             
-        cin.ignore(1000, '\n');  
-    }
-}
-    }while(!tttBoard.isAvailable(r,c));
-    currCol=c;
-    currRow=r;
-     
-    tttBoard.mark(r,c,HUMAN_ID);
+{
+    int r, c;
 
-  }
+    while (true) {
+        cout << "Enter row" << endl;
+        while (true) {
+            if (cin >> r) {
+                if (r >= 0 && r < tttBoard.size())
+                    break;
+                else
+                    cout << "Row out of range, re-enter." << endl;
+            } else {
+                cout << "Invalid row, enter an integer." << endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+        }
+
+        cout << "Enter col" << endl;
+        while (true) {
+            if (cin >> c) {
+                if (c >= 0 && c < tttBoard.size())
+                    break;
+                else
+                    cout << "Column out of range, re-enter." << endl;
+            } else {
+                cout << "Invalid column, enter an integer." << endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+        }
+
+        if (!tttBoard.isAvailable(r, c)) {
+            cout << "Cell is already taken, choose another one." << endl;
+            continue; 
+        }
+
+        tttBoard.mark(r, c, HUMAN_ID);
+        currRow = r;
+        currCol = c;
+        break;
+    }
+}
 
   //computer play
   //Computer checks the board from the first row to the last row.
@@ -163,6 +165,7 @@ TicTacToeGame::TicTacToeGame()
   {
     int tr,tc;
     bool tag=false;
+    bool protect=false;
    
     for(int i=0;i<tttBoard.size();i++)
     {
@@ -177,29 +180,38 @@ TicTacToeGame::TicTacToeGame()
             tc=j;
           }
         }
-
+        if(tttBoard.isAvailable(i,j))
+        {
         tttBoard.mark(i,j,COMPUTER_ID);
           if(tttBoard.win(i,j))
           {
+            currCol=tc;
+    currRow=tr;
             return;
           }
+          tttBoard.mark(i,j,' ');
 
           tttBoard.mark(i,j,HUMAN_ID);
           if(tttBoard.win(i,j))
           {
+            tttBoard.mark(i,j,' ');
+            currCol=tc;
+    currRow=tr;
             tttBoard.mark(i,j,COMPUTER_ID);
             return;
           }
           tttBoard.mark(i,j,' ');
+        }
           
           
 
       }
       
     }
-    currCol=tc;
+  
+    tttBoard.mark(tr,tc,COMPUTER_ID);
+      currCol=tc;
     currRow=tr;
-    tttBoard.mark(tr,tc,COMPUTER_ID );
 
 
   }

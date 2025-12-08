@@ -1,7 +1,8 @@
   #ifndef TicTacToeBoard_H
   #define TicTacToeBoard_H
-  #include <iostream > //std
-  #include <vector >
+  #include <iostream> //std
+  #include <vector>
+  #include <string>
   class TicTacToeBoard {
   public :
   //a default 3x3 TicTacToe board

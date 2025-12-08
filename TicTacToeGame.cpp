@@ -24,7 +24,7 @@ TicTacToeGame::TicTacToeGame()
         cout << "Do you want to continue (yes/no): ";
         cin >> ans;
 
-    }while(ans=="Y"||ans == "y");
+    }while(ans=="Y"||ans == "y"||ans=="yes"||ans =="Yes");
 
   }
 
@@ -54,7 +54,12 @@ TicTacToeGame::TicTacToeGame()
 
   bool TicTacToeGame::isGameOver() const
   {
-  
+
+    if(tttBoard.tie()) {
+  cout<<tttBoard.to_string()<<endl;
+    cout << "It is a tie." << endl;
+    return true;
+}
     if(tttBoard.win(currRow, currCol)) {
     if(tttBoard.getValue(currRow, currCol) == HUMAN_ID)
     {
@@ -71,10 +76,6 @@ TicTacToeGame::TicTacToeGame()
     return true;
 }
 
-if(tttBoard.tie()) {
-    cout << "It is a tie." << endl;
-    return true;
-}
 
 return false;
 

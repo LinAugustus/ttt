@@ -1,5 +1,3 @@
-
-
 #include "TicTacToeBoard.hpp"
 #include <iostream>
 #include <vector>
@@ -154,14 +152,53 @@ std::string TicTacToeBoard::to_string() const {
 //is missing an 'X' or an 'O', a win is still possible (return false for tie status).
 bool TicTacToeBoard::tie() const {
     //check row;
-    for(int i=0;i<board.size();i++)
-    {
-        for(int j=0;j<board.size();j++)
-        {
-            if(board[i][j]==' ')
-            return false;
+
+     int n = board.size();
+
+    // check rows
+    for (int i = 0; i < n; i++) {
+        bool hasX = false, hasO = false;
+        for (int j = 0; j < n; j++) {
+            if (board[i][j] == 'X') hasX = true;
+            if (board[i][j] == 'O') hasO = true;
         }
+        if (!hasX || !hasO) return false;
     }
+
+    // check columns
+    for (int j = 0; j < n; j++) {
+        bool hasX = false, hasO = false;
+        for (int i = 0; i < n; i++) {
+            if (board[i][j] == 'X') hasX = true;
+            if (board[i][j] == 'O') hasO = true;
+        }
+        if (!hasX || !hasO) return false;
+    }
+
+    // main diagonal
+    {
+        bool hasX = false, hasO = false;
+        for (int i = 0; i < n; i++) {
+            if (board[i][i] == 'X') hasX = true;
+            if (board[i][i] == 'O') hasO = true;
+        }
+        if (!hasX || !hasO) return false;
+    }
+
+    // anti diagonal
+    {
+        bool hasX = false, hasO = false;
+        for (int i = 0; i < n; i++) {
+            int j = n - 1 - i;
+            if (board[i][j] == 'X') hasX = true;
+            if (board[i][j] == 'O') hasO = true;
+        }
+        if (!hasX || !hasO) return false;
+    }
+
+    return true;
+
+/*
     for(int i=0;i<board.size();i++)
     {
         bool x=false;
@@ -311,6 +348,8 @@ bool TicTacToeBoard::tie() const {
                 return false;
             }
     return true;
+
+    */
      //TODO: placeholder
 }
 

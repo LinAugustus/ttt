@@ -3,6 +3,12 @@
   #include <string>
   #include "TicTacToeBoard.hpp"
 
+
+  TicTacToeBoard::TicTacToeBoard() {
+    board= std::vector<std::vector<char>>(3, std::vector<char>(3, ' '));
+
+}
+
   
 //TODO: If givenSize is less than 3, create a 3x3 board.
 //Otherwise, initialize the board with the given size for both rows and columns.

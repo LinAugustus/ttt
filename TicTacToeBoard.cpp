@@ -1,15 +1,9 @@
-#include "TicTacToeBoard.hpp"
-#include <iostream>
-#include <vector>
-#include <string>
+  #include <iostream> //std
+  #include <vector>
+  #include <string>
+  #include "TicTacToeBoard.hpp"
 
-//Do not forget TicTacToeBoard:: before constructors and methods of TicTacToeBoard class
-//TODO: default constructor creates a 3x3 board 
-TicTacToeBoard::TicTacToeBoard() {
-    board= std::vector<std::vector<char>>(3, std::vector<char>(3, ' '));
-
-}
-
+  
 //TODO: If givenSize is less than 3, create a 3x3 board.
 //Otherwise, initialize the board with the given size for both rows and columns.
 TicTacToeBoard::TicTacToeBoard(int givenSize) {
@@ -198,158 +192,7 @@ bool TicTacToeBoard::tie() const {
 
     return true;
 
-/*
-    for(int i=0;i<board.size();i++)
-    {
-        bool x=false;
-        bool o=false;
-        bool s=false;
-        for(int j=0;j<board.size();j++)
-        {
-            if(board[i][j]=='X')
-            {
-                x=true;
 
-            }
-            if(board[i][j]==' ')
-            {
-                s=true;
-
-            }
-            if(board[i][j]=='O')
-            {
-                o=true;
-            }
-            
-
-        }
-        if(s&&o&&!x)
-            {
-                return false;
-            }
-            else if(s&&!o&&x)
-            {
-                return false;
-            }
-            else if(s&&!o&&!x)
-            {
-                return false;
-            }
-            
-    }
-
-     for(int i=0;i<board.size();i++)
-    {
-        bool x=false;
-        bool o=false;
-        bool s=false;
-        for(int j=0;j<board.size();j++)
-        {
-            if(board[j][i]=='X')
-            {
-                x=true;
-
-            }
-            if(board[j][i]==' ')
-            {
-                s=true;
-
-            }
-            if(board[j][i]=='O')
-            {
-                o=true;
-            }
-           
-            
-
-        }
-         if(s&&o&&!x)
-            {
-                return false;
-            }
-            else if(s&&!o&&x)
-            {
-                return false;
-            }
-            else if(s&&!o&&!x)
-            {
-                return false;
-            }
-    }
-
-        bool xd=false;
-        bool od=false;
-        bool sd=false;
-    for(int i=0;i<board.size();i++)
-    {
-         if(board[i][i]=='X')
-            {
-                xd=true;
-
-            }
-            if(board[i][i]==' ')
-            {
-                sd=true;
-
-            }
-            if(board[i][i]=='O')
-            {
-                od=true;
-            }
-            
-    }
-    if(sd&&od&&!xd)
-            {
-                return false;
-            }
-            else if(sd&&!od&&xd)
-            {
-                return false;
-            }
-            else if(sd&&!od&&!xd)
-            {
-                return false;
-            }
-
-        bool xa=false;
-        bool oa=false;
-        bool sa=false;
-    for(int i=0;i<board.size();i++)
-    {
-        if(board[i][board.size()-i-1]=='X')
-            {
-                xa=true;
-
-            }
-            if(board[i][board.size()-i-1]==' ')
-            {
-                sa=true;
-
-            }
-            if(board[i][board.size()-i-1]=='O')
-            {
-                oa=true;
-            }
-            
-        
-
-    
-    }
-    if(sa&&oa&&!xa)
-            {
-                return false;
-            }
-            else if(sa&&!oa&&xa)
-            {
-                return false;
-            }
-            else if(sa&&!oa&&!xa)
-            {
-                return false;
-            }
-    return true;
-
-    */
      //TODO: placeholder
 }
 

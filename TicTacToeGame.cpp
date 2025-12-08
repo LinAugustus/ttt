@@ -1,16 +1,14 @@
   #include <iostream> //std
   #include <vector>
   #include <string>
-  #include "TicTacToeBoard.hpp"
+  //#include "TicTacToeBoard.hpp"
   #include "TicTacToeGame.hpp"
   
   
 
  
 
-  using namespace std;
-
-TicTacToeGame::TicTacToeGame()
+  TicTacToeGame::TicTacToeGame()
 {
     tttBoard=TicTacToeBoard();
 }
@@ -22,13 +20,13 @@ TicTacToeGame::TicTacToeGame()
   }
   void TicTacToeGame::runRepeat()
   {
-    string ans;
+    std::string ans;
     do
     {
         tttBoard.clear();
         start();
-        cout << "Do you want to continue (yes/no): ";
-        cin >> ans;
+        std::cout << "Do you want to continue (yes/no): ";
+        std::cin >> ans;
 
     }while(ans=="Y"||ans == "y"||ans=="yes"||ans =="Yes");
 
@@ -40,7 +38,7 @@ TicTacToeGame::TicTacToeGame()
     int counter=1;
     do
     {
-    cout<<tttBoard.to_string()<<endl;
+    std::cout<<tttBoard.to_string()<<std::endl;
     
     if(counter%2==1)
     {
@@ -62,22 +60,22 @@ TicTacToeGame::TicTacToeGame()
   {
 
     if(tttBoard.tie()) {
-  cout<<tttBoard.to_string()<<endl;
-    cout << "It is a tie." << endl;
+  std::cout<<tttBoard.to_string()<<std::endl;
+    std::cout << "It is a tie." << std::endl;
     return true;
 }
     if(tttBoard.win(currRow, currCol)) {
     if(tttBoard.getValue(currRow, currCol) == HUMAN_ID)
     {
-      cout<<tttBoard.to_string()<<endl;
+      std::cout<<tttBoard.to_string()<<std::endl;
     
-        cout << "Human wins. Yay!!!" << endl;
+        std::cout << "Human wins. Yay!!!" << std::endl;
     }
     else
     {
-      cout<<tttBoard.to_string()<<endl;
+      std::cout<<tttBoard.to_string()<<std::endl;
     
-        cout << "Computer wins. Yuck." << endl;
+        std::cout << "Computer wins. Yuck." << std::endl;
     }
     return true;
 }
@@ -110,36 +108,36 @@ return false;
     int r, c;
 
     while (true) {
-        cout << "Enter row" << endl;
+        std::cout << "Enter row" << std::endl;
         while (true) {
-            if (cin >> r) {
+            if (std::cin >> r) {
                 if (r >= 0 && r < tttBoard.size())
                     break;
                 else
-                    cout << "Row out of range, re-enter." << endl;
+                    std::cout << "Row out of range, re-enter." << std::endl;
             } else {
-                cout << "Invalid row, enter an integer." << endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
+                std::cout << "Invalid row, enter an integer." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
             }
         }
 
-        cout << "Enter col" << endl;
+        std::cout << "Enter col" << std::endl;
         while (true) {
-            if (cin >> c) {
+            if (std::cin >> c) {
                 if (c >= 0 && c < tttBoard.size())
                     break;
                 else
-                    cout << "Column out of range, re-enter." << endl;
+                    std::cout << "Column out of range, re-enter." << std::endl;
             } else {
-                cout << "Invalid column, enter an integer." << endl;
-                cin.clear();
-                cin.ignore(1000, '\n');
+                std::cout << "Invalid column, enter an integer." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
             }
         }
 
         if (!tttBoard.isAvailable(r, c)) {
-            cout << "Cell is already taken, choose another one." << endl;
+            std::cout << "Cell is already taken, choose another one." << std::endl;
             continue; 
         }
 
